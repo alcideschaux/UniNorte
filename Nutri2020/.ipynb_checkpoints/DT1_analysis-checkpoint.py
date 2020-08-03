@@ -17,7 +17,7 @@ dataset.groupby('Fecha')['Puntaje'].describe()
 import scipy.stats
 scipy.stats.ttest_ind(*[df['Puntaje'].values for name, df in dataset.groupby('Fecha')], nan_policy='omit')
 
-dataset['Calificación'] = dataset['Puntaje'].apply(lambda x: 'Aprobado' if x >= 35 else 'Reprobado')
+dataset['Calificación'] = dataset['Puntaje'].apply(lambda x: 'Aprobado' if x >= 30 else 'Reprobado')
 dataset.head()
 
 sns.countplot(data=dataset, x='Fecha', hue='Calificación')

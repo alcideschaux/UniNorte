@@ -12,12 +12,12 @@ dataset['Fecha'] = dataset['Fecha'].apply(lambda x: '24/07' if '24 de julio' in 
 dataset['N'] = range(len(dataset))
 
 sns.boxplot(data=dataset, x='Fecha', y='Puntaje')
-dataset.groupby('Fecha')['Puntaje'].describe().to_frame()
+dataset.groupby('Fecha')['Puntaje'].describe()
 
 import scipy.stats
 scipy.stats.ttest_ind(*[df['Puntaje'].values for name, df in dataset.groupby('Fecha')], nan_policy='omit')
 
-dataset['Calificación'] = dataset['Puntaje'].apply(lambda x: 'Aprobado' if x >= 35 else 'Reprobado')
+dataset['Calificación'] = dataset['Puntaje'].apply(lambda x: 'Aprobado' if x >= 30 else 'Reprobado')
 dataset.head()
 
 sns.countplot(data=dataset, x='Fecha', hue='Calificación')
